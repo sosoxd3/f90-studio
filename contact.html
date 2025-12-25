@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا - F90 Music Studio</title>
+    <meta name="description" content="تواصل مع فريق F90 Music Studio للاستفسارات والحجوزات">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="F90 Music Studio">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="resources/f90-logo.png">
+    <link rel="apple-touch-icon" href="resources/f90-logo.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'studio-black': '#0a0a0a',
+                        'studio-gray': '#1a1a1a',
+                        'studio-gold': '#d4af37',
+                        'studio-silver': '#8a8a8a',
+                        'studio-bronze': '#8b6914',
+                        'studio-warm-gray': '#2a2a2a'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Tajawal', 'Inter', sans-serif;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+        
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 26, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .contact-card {
+            transition: all 0.3s ease;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .form-input {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .mini-player {
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #d4af37 0%, #f4d03f 100%);
+        }
+        
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-button {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-button:hover {
+            transform: scale(1.05);
+        }
+        
+        .social-link {
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-4px);
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body class="bg-studio-black text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="resources/f90-logo.png" alt="F90 Studio" class="w-10 h-10">
+                <span class="text-xl font-bold font-playfair text-studio-gold">F90 Studio</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-white hover:text-studio-gold transition-colors">الرئيسية</a>
+                <a href="music.html" class="text-white hover:text-studio-gold transition-colors">الموسيقى</a>
+                <a href="playlists.html" class="text-white hover:text-studio-gold transition-colors">قوائم التشغيل</a>
+                <a href="studio.html" class="text-white hover:text-studio-gold transition-colors">الاستوديو</a>
+                <a href="requests.html" class="text-white hover:text-studio-gold transition-colors">الطلبات</a>
+                <a href="about.html" class="text-white hover:text-studio-gold transition-colors">من نحن</a>
+                <a href="contact.html" class="text-studio-gold font-medium">اتصل بنا</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="mobileMenu" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenuContent" class="hidden md:hidden mt-4 pb-4 border-t border-studio-warm-gray">
+            <div class="flex flex-col space-y-3 pt-4">
+                <a href="index.html" class="text-white hover:text-studio-gold transition-colors">الرئيسية</a>
+                <a href="music.html" class="text-white hover:text-studio-gold transition-colors">الموسيقى</a>
+                <a href="playlists.html" class="text-white hover:text-studio-gold transition-colors">قوائم التشغيل</a>
+                <a href="studio.html" class="text-white hover:text-studio-gold transition-colors">الاستوديو</a>
+                <a href="requests.html" class="text-white hover:text-studio-gold transition-colors">الطلبات</a>
+                <a href="about.html" class="text-white hover:text-studio-gold transition-colors">من نحن</a>
+                <a href="contact.html" class="text-studio-gold font-medium">اتصل بنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-32 pb-16 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-playfair text-studio-gold mb-6">اتصل بنا</h1>
+            <p class="text-xl text-studio-silver mb-12">نحن هنا للإجابة على استفساراتك وتلبية احتياجاتك الموسيقية</p>
+        </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="pb-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="contact-card rounded-2xl p-8 text-center section-reveal">
+                    <div class="text-5xl mb-6">📱</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-4">WhatsApp</h3>
+                    <p class="text-studio-silver mb-6">أسرع طريقة للتواصل المباشر</p>
+                    <a href="https://wa.me/970568181910" target="_blank" class="contact-button bg-green-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-700 transition-all inline-block">
+                        تواصل الآن
+                    </a>
+                </div>
+                
+                <div class="contact-card rounded-2xl p-8 text-center section-reveal">
+                    <div class="text-5xl mb-6">📧</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-4">البريد الإلكتروني</h3>
+                    <p class="text-studio-silver mb-6">للطلبات التفصيلية والاستفسارات</p>
+                    <a href="mailto:f90gimme@gmail.com" class="contact-button bg-studio-gold text-black px-6 py-3 rounded-xl font-bold hover:bg-opacity-90 transition-all inline-block">
+                        أرسل بريد
+                    </a>
+                </div>
+                
+                <div class="contact-card rounded-2xl p-8 text-center section-reveal">
+                    <div class="text-5xl mb-6">📞</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-4">الهاتف</h3>
+                    <p class="text-studio-silver mb-6">+970 568 181 910</p>
+                    <button onclick="copyToClipboard('+970568181910')" class="contact-button bg-studio-bronze text-white px-6 py-3 rounded-xl font-bold hover:bg-opacity-90 transition-all">
+                        نسخ الرقم
+                    </button>
+                </div>
+                
+                <div class="contact-card rounded-2xl p-8 text-center section-reveal">
+                    <div class="text-5xl mb-6">🕒</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-4">أوقات العمل</h3>
+                    <p class="text-studio-silver mb-6">من السبت إلى الخميس<br>9 صباحاً - 10 مساءً</p>
+                    <span class="text-sm text-studio-gold">الجمعة إجازة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-20 px-6 bg-studio-gray">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12 section-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold font-playfair text-studio-gold mb-4">أرسل رسالة</h2>
+                <p class="text-xl text-studio-silver">هل لديك سؤال أو استفسار؟ أرسل لنا رسالة وسنجيبك في أقرب وقت</p>
+            </div>
+            
+            <form id="contactForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-studio-gold font-bold mb-2">الاسم الكامل *</label>
+                        <input 
+                            type="text" 
+                            id="contactName" 
+                            class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-studio-silver focus:outline-none"
+                            placeholder="أدخل اسمك الكامل"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <label class="block text-studio-gold font-bold mb-2">البريد الإلكتروني أو الهاتف *</label>
+                        <input 
+                            type="text" 
+                            id="contactInfo" 
+                            class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-studio-silver focus:outline-none"
+                            placeholder="بريدك الإلكتروني أو رقم هاتفك"
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-studio-gold font-bold mb-2">الموضوع *</label>
+                    <select 
+                        id="contactSubject" 
+                        class="form-input w-full px-4 py-3 rounded-xl text-white focus:outline-none"
+                        required
+                    >
+                        <option value="">اختر الموضوع</option>
+                        <option value="booking">حجز جلسة تسجيل</option>
+                        <option value="song-request">طلب أغنية مخصصة</option>
+                        <option value="pricing">استفسار عن الأسعار</option>
+                        <option value="technical">استفسار تقني</option>
+                        <option value="collaboration">فرصة تعاون</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-studio-gold font-bold mb-2">الرسالة *</label>
+                    <textarea 
+                        id="contactMessage" 
+                        rows="6"
+                        class="form-input w-full px-4 py-3 rounded-xl text-white placeholder-studio-silver focus:outline-none resize-none"
+                        placeholder="اكتب رسالتك هنا..."
+                        required
+                    ></textarea>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button type="submit" class="bg-studio-gold text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition-all flex-1">
+                        إرسال عبر WhatsApp
+                    </button>
+                    <button type="button" onclick="submitContactForm('email')" class="border-2 border-studio-gold text-studio-gold px-8 py-4 rounded-xl font-bold text-lg hover:bg-studio-gold hover:text-black transition-all flex-1">
+                        إرسال عبر البريد
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold font-playfair text-studio-gold mb-4">تابعنا على وسائل التواصل</h2>
+                <p class="text-xl text-studio-silver">ابقَ على اطلاع بأحدث أخبارنا وإصداراتنا</p>
+            </div>
+            
+            <div class="flex justify-center space-x-8 space-x-reverse">
+                <a href="https://youtube.com/@f90-music" target="_blank" class="social-link text-6xl">
+                    📺
+                </a>
+                <a href="https://instagram.com/f90_yt" target="_blank" class="social-link text-6xl">
+                    📷
+                </a>
+                <a href="https://tiktok.com/@f90.business" target="_blank" class="social-link text-6xl">
+                    🎵
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-6 bg-studio-gray">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold font-playfair text-studio-gold mb-4">الأسئلة الشائعة</h2>
+                <p class="text-xl text-studio-silver">إجابات على أكثر الأسئلة تكراراً</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="contact-card rounded-2xl p-6 section-reveal">
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">كم تستغرق جلسة التسجيل عادةً؟</h3>
+                    <p class="text-studio-silver">تعتمد مدة الجلسة على نوع المشروع، لكن عادةً تستغرق جلسة تسجيل vocals من 2-4 ساعات، بينما المشاريع الكاملة قد تستغرق عدة أيام.</p>
+                </div>
+                
+                <div class="contact-card rounded-2xl p-6 section-reveal">
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">هل يمكنني حضور جلسة المكساج؟</h3>
+                    <p class="text-studio-silver">بالطبع! نحن نشجع الفنانين على المشاركة في عملية المكساج لضمان تحقيق رؤيتهم الفنية بالضبط.</p>
+                </div>
+                
+                <div class="contact-card rounded-2xl p-6 section-reveal">
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">ما هي تكلفة إنتاج أغنية كاملة؟</h3>
+                    <p class="text-studio-silver">تختلف التكلفة حسب تعقيد المشروع ومدة الأغنية والخدمات المطلوبة. تواصل معنا للحصول على عرض سعر مخصص.</p>
+                </div>
+                
+                <div class="contact-card rounded-2xl p-6 section-reveal">
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">هل تقدمون خدمات ما بعد الإنتاج؟</h3>
+                    <p class="text-studio-silver">نعم، نقدم جميع خدمات ما بعد الإنتاج بما في ذلك المكساج، الماسترنج، وتصميم الغلاف.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-studio-gray py-12 px-6 border-t border-studio-warm-gray">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <img src="resources/f90-logo.png" alt="F90 Studio" class="w-8 h-8">
+                <span class="text-xl font-bold font-playfair text-studio-gold">F90 Music Studio</span>
+            </div>
+            <p class="text-studio-silver mb-4">© 2025 F90 Music Studio - جميع الحقوق محفوظة</p>
+            <div class="flex justify-center space-x-6 space-x-reverse text-sm">
+                <a href="privacy.html" class="text-studio-silver hover:text-studio-gold">سياسة الخصوصية</a>
+                <a href="terms.html" class="text-studio-silver hover:text-studio-gold">شروط الاستخدام</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mini Player -->
+    <div id="miniPlayer" class="mini-player fixed bottom-0 left-0 right-0 z-40 transform translate-y-full transition-transform duration-300">
+        <div class="px-6 py-4">
+            <div class="flex items-center space-x-4">
+                <img id="currentTrackArtwork" src="" alt="" class="w-12 h-12 rounded-lg">
+                <div class="flex-1 min-w-0">
+                    <h4 id="currentTrackTitle" class="font-medium text-white truncate"></h4>
+                    <p id="currentTrackArtist" class="text-sm text-studio-silver truncate"></p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="prevTrack" class="text-studio-gold hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                        </svg>
+                    </button>
+                    <button id="playPause" class="bg-studio-gold text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-90 transition-all">
+                        <svg id="playIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg id="pauseIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <button id="nextTrack" class="text-studio-gold hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="w-full bg-studio-warm-gray rounded-full h-1">
+                    <div id="progressBar" class="progress-bar h-1 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Contact page specific functionality
+        class ContactPage {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupFormHandlers();
+                this.setupScrollAnimations();
+            }
+
+            setupFormHandlers() {
+                const contactForm = document.getElementById('contactForm');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        this.submitContactForm('whatsapp');
+                    });
+                }
+            }
+
+            setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.3,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.section-reveal').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            submitContactForm(method) {
+                const formData = this.getContactFormData();
+                
+                if (!this.validateContactForm(formData)) {
+                    this.showNotification('الرجاء ملء جميع الحقول المطلوبة', 'error');
+                    return;
+                }
+
+                const message = this.formatContactMessage(formData);
+                
+                if (method === 'whatsapp') {
+                    this.sendWhatsAppMessage(message);
+                } else {
+                    this.sendEmail('استفسار من F90 Music Studio', message);
+                }
+
+                this.showNotification('تم إرسال رسالتك بنجاح!');
+                this.clearForm('contactForm');
+            }
+
+            getContactFormData() {
+                return {
+                    name: document.getElementById('contactName').value,
+                    info: document.getElementById('contactInfo').value,
+                    subject: document.getElementById('contactSubject').value,
+                    message: document.getElementById('contactMessage').value
+                };
+            }
+
+            validateContactForm(data) {
+                return data.name && data.info && data.subject && data.message;
+            }
+
+            formatContactMessage(data) {
+                let message = `رسالة جديدة من F90 Music Studio\n\n`;
+                message += `الاسم: ${data.name}\n`;
+                message += `البريد/الهاتف: ${data.info}\n`;
+                message += `الموضوع: ${data.subject}\n\n`;
+                message += `الرسالة:\n${data.message}`;
+                
+                return encodeURIComponent(message);
+            }
+
+            sendWhatsAppMessage(message) {
+                const whatsappUrl = `https://wa.me/970568181910?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            }
+
+            sendEmail(subject, body) {
+                const emailUrl = `mailto:f90gimme@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+                window.open(emailUrl, '_blank');
+            }
+
+            clearForm(formId) {
+                document.getElementById(formId).reset();
+            }
+
+            showNotification(message, type = 'success') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `fixed top-24 right-6 z-50 px-6 py-3 rounded-xl text-white font-bold transition-all duration-300 transform translate-x-full ${
+                    type === 'success' ? 'bg-green-600' : 'bg-red-600'
+                }`;
+                notification.textContent = message;
+
+                document.body.appendChild(notification);
+
+                // Animate in
+                setTimeout(() => {
+                    notification.classList.remove('translate-x-full');
+                }, 100);
+
+                // Animate out and remove
+                setTimeout(() => {
+                    notification.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 4000);
+            }
+        }
+
+        // Utility function for copying to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Create temporary notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-24 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-xl bg-studio-gold text-black font-bold transition-all duration-300';
+                notification.textContent = 'تم نسخ الرقم!';
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 2000);
+            });
+        }
+
+        // Initialize contact page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.contactPage = new ContactPage();
+        });
+    </script>
+</body>
+</html>

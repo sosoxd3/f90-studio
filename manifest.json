@@ -1,0 +1,75 @@
+{
+  "name": "F90 Music Studio - استوديو اف تسعين",
+  "short_name": "F90 Studio",
+  "description": "استوديو تسجيل احترافي - Professional Recording Studio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#d4af37",
+  "orientation": "portrait-primary",
+  "categories": ["music", "entertainment", "productivity"],
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "resources/f90-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "resources/f90-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "resources/studio-hero.jpg",
+      "sizes": "1024x768",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الموسيقى",
+      "short_name": "الموسيقى",
+      "description": "تصفح مكتبتنا الموسيقية",
+      "url": "/music.html",
+      "icons": [
+        {
+          "src": "resources/f90-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "الاستوديو",
+      "short_name": "الاستوديو",
+      "description": "استكشف بيئتنا الاحترافية",
+      "url": "/studio.html",
+      "icons": [
+        {
+          "src": "resources/f90-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "الطلبات",
+      "short_name": "الطلبات",
+      "description": "اطلب أغنيتك المخصصة",
+      "url": "/requests.html",
+      "icons": [
+        {
+          "src": "resources/f90-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

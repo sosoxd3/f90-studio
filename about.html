@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - F90 Music Studio</title>
+    <meta name="description" content="تعرف على فريق F90 Music Studio وقصتنا في عالم الإنتاج الموسيقي">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="F90 Music Studio">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="resources/f90-logo.png">
+    <link rel="apple-touch-icon" href="resources/f90-logo.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'studio-black': '#0a0a0a',
+                        'studio-gray': '#1a1a1a',
+                        'studio-gold': '#d4af37',
+                        'studio-silver': '#8a8a8a',
+                        'studio-bronze': '#8b6914',
+                        'studio-warm-gray': '#2a2a2a'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Tajawal', 'Inter', sans-serif;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+        
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 26, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .about-hero {
+            background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.7)), url('resources/studio-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .mini-player {
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #d4af37 0%, #f4d03f 100%);
+        }
+        
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .value-card {
+            transition: all 0.3s ease;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body class="bg-studio-black text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="resources/f90-logo.png" alt="F90 Studio" class="w-10 h-10">
+                <span class="text-xl font-bold font-playfair text-studio-gold">F90 Studio</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-white hover:text-studio-gold transition-colors">الرئيسية</a>
+                <a href="music.html" class="text-white hover:text-studio-gold transition-colors">الموسيقى</a>
+                <a href="playlists.html" class="text-white hover:text-studio-gold transition-colors">قوائم التشغيل</a>
+                <a href="studio.html" class="text-white hover:text-studio-gold transition-colors">الاستوديو</a>
+                <a href="requests.html" class="text-white hover:text-studio-gold transition-colors">الطلبات</a>
+                <a href="about.html" class="text-studio-gold font-medium">من نحن</a>
+                <a href="contact.html" class="text-white hover:text-studio-gold transition-colors">اتصل بنا</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="mobileMenu" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenuContent" class="hidden md:hidden mt-4 pb-4 border-t border-studio-warm-gray">
+            <div class="flex flex-col space-y-3 pt-4">
+                <a href="index.html" class="text-white hover:text-studio-gold transition-colors">الرئيسية</a>
+                <a href="music.html" class="text-white hover:text-studio-gold transition-colors">الموسيقى</a>
+                <a href="playlists.html" class="text-white hover:text-studio-gold transition-colors">قوائم التشغيل</a>
+                <a href="studio.html" class="text-white hover:text-studio-gold transition-colors">الاستوديو</a>
+                <a href="requests.html" class="text-white hover:text-studio-gold transition-colors">الطلبات</a>
+                <a href="about.html" class="text-studio-gold font-medium">من نحن</a>
+                <a href="contact.html" class="text-white hover:text-studio-gold transition-colors">اتصل بنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero min-h-screen flex items-center justify-center relative">
+        <div class="text-center z-10 px-6 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold font-playfair text-studio-gold mb-6">
+                من نحن
+            </h1>
+            <p class="text-xl md:text-2xl text-studio-silver mb-8 font-tajawal">
+                قصة F90 Music Studio في عالم الإنتاج الموسيقي الاحترافي
+            </p>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="section-reveal">
+                    <img src="resources/studio-hero.jpg" alt="F90 Studio Story" class="w-full h-96 object-cover rounded-3xl shadow-2xl">
+                </div>
+                <div class="section-reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold font-playfair text-studio-gold mb-6">قصتنا</h2>
+                    <div class="space-y-6 text-lg text-studio-silver leading-relaxed">
+                        <p>
+                            تأسست F90 Music Studio من شغف عميق بالموسيقى والصوت عالي الجودة. بدأنا رحلتنا بهدف واحد: توفير بيئة احترافية تساعد الفنانين على تحقيق رؤاهم الموسيقية.
+                        </p>
+                        <p>
+                            على مدار السنوات، عملنا مع عدد كبير من الفنانين الموهوبين، من المبتدئين إلى المحترفين، وساهمنا في إنتاج أعمال موسيقية متميزة تركت بصمة في الساحة الفنية.
+                        </p>
+                        <p>
+                            نؤمن بأن كل فنان لديه قصة فريدة تستحق أن تُروى بأفضل طريقة ممكنة، ونحن هنا لضمان أن يصل صوتك إلى جمهورك بأعلى جودة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-20 px-6 bg-studio-gray">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold font-playfair text-studio-gold mb-4">قيمنا</h2>
+                <p class="text-xl text-studio-silver">المبادئ التي نعمل وفقها في F90 Music Studio</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="value-card rounded-2xl p-8 text-center section-reveal">
+                    <div class="text-5xl mb-6">🎯</div>
+                    <h3 class="text-2xl font-bold text-studio-gold mb-4">الجودة أولاً</h3>
+                    <p class="text-studio-silver leading-relaxed">
+                        نلتزم بأعلى معايير الجودة في كل جانب من جوانب عملنا، من التسجيل إلى المكساج والماسترنج.
+                    </p>
+                </div>
+                
+                <div class="value-card rounded-2xl p-8 text-center section-reveal">
+                    <div class="text-5xl mb-6">🤝</div>
+                    <h3 class="text-2xl font-bold text-studio-gold mb-4">الشراكة الحقيقية</h3>
+                    <p class="text-studio-silver leading-relaxed">
+                        نعمل كشركاء حقيقيين مع فنانينا، نستمع لاحتياجاتهم ونساعدهم في تطوير رؤاهم الموسيقية.
+                    </p>
+                </div>
+                
+                <div class="value-card rounded-2xl p-8 text-center section-reveal">
+                    <div class="text-5xl mb-6">⚡</div>
+                    <h3 class="text-2xl font-bold text-studio-gold mb-4">الابتكار المستمر</h3>
+                    <p class="text-studio-silver leading-relaxed">
+                        نستثمر في أحدث التقنيات والمعدات لضمان أن نبقى في طليعة صناعة الموسيقى.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+                <h2 class="text-4xl md:text-5xl font-bold font-playfair text-studio-gold mb-4">خدماتنا</h2>
+                <p class="text-xl text-studio-silver">مجموعة شاملة من الخدمات الموسيقية الاحترافية</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center section-reveal">
+                    <div class="text-4xl mb-4">🎤</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">تسجيل vocals</h3>
+                    <p class="text-studio-silver">تسجيل صوتي احترافي في كابينة معزولة مع أفضل الميكروفونات</p>
+                </div>
+                
+                <div class="text-center section-reveal">
+                    <div class="text-4xl mb-4">🎸</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">تسجيل أدوات</h3>
+                    <p class="text-studio-silver">تسجيل جميع أنواع الأدوات الموسيقية بدقة عالية</p>
+                </div>
+                
+                <div class="text-center section-reveal">
+                    <div class="text-4xl mb-4">🎛️</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">المكساج والماسترنج</h3>
+                    <p class="text-studio-silver">معالجة صوتية احترافية لإبراز جمال عملك الفني</p>
+                </div>
+                
+                <div class="text-center section-reveal">
+                    <div class="text-4xl mb-4">🎵</div>
+                    <h3 class="text-xl font-bold text-studio-gold mb-3">إنتاج موسيقي</h3>
+                    <p class="text-studio-silver">إنشاء موسيقى مخصصة حسب ذوقك واحتياجات مشروعك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 px-6 bg-studio-gray">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="section-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold font-playfair text-studio-gold mb-6">
+                    مستعد لبدء رحلتك الموسيقية؟
+                </h2>
+                <p class="text-xl text-studio-silver mb-8">
+                    انضم إلى قائمة الفنانين الذين وثقوا في F90 Music Studio لتحقيق أحلامهم الموسيقية
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="window.location.href='requests.html'" class="bg-studio-gold text-black px-8 py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition-all">
+                        ابدأ مشروعك
+                    </button>
+                    <button onclick="window.location.href='contact.html'" class="border-2 border-studio-gold text-studio-gold px-8 py-4 rounded-xl font-bold text-lg hover:bg-studio-gold hover:text-black transition-all">
+                        تواصل معنا
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-studio-gray py-12 px-6 border-t border-studio-warm-gray">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <img src="resources/f90-logo.png" alt="F90 Studio" class="w-8 h-8">
+                <span class="text-xl font-bold font-playfair text-studio-gold">F90 Music Studio</span>
+            </div>
+            <p class="text-studio-silver mb-4">© 2025 F90 Music Studio - جميع الحقوق محفوظة</p>
+            <div class="flex justify-center space-x-6 space-x-reverse text-sm">
+                <a href="privacy.html" class="text-studio-silver hover:text-studio-gold">سياسة الخصوصية</a>
+                <a href="terms.html" class="text-studio-silver hover:text-studio-gold">شروط الاستخدام</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mini Player -->
+    <div id="miniPlayer" class="mini-player fixed bottom-0 left-0 right-0 z-40 transform translate-y-full transition-transform duration-300">
+        <div class="px-6 py-4">
+            <div class="flex items-center space-x-4">
+                <img id="currentTrackArtwork" src="" alt="" class="w-12 h-12 rounded-lg">
+                <div class="flex-1 min-w-0">
+                    <h4 id="currentTrackTitle" class="font-medium text-white truncate"></h4>
+                    <p id="currentTrackArtist" class="text-sm text-studio-silver truncate"></p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="prevTrack" class="text-studio-gold hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                        </svg>
+                    </button>
+                    <button id="playPause" class="bg-studio-gold text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-90 transition-all">
+                        <svg id="playIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg id="pauseIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <button id="nextTrack" class="text-studio-gold hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="w-full bg-studio-warm-gray rounded-full h-1">
+                    <div id="progressBar" class="progress-bar h-1 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // About page specific functionality
+        class AboutPage {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.setupScrollAnimations();
+            }
+
+            setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.3,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.section-reveal').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+        }
+
+        // Initialize about page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.aboutPage = new AboutPage();
+        });
+    </script>
+</body>
+</html>

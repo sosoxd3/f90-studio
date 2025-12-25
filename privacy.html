@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية - F90 Music Studio</title>
+    <meta name="description" content="سياسة الخصوصية لموقع F90 Music Studio">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="F90 Music Studio">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="resources/f90-logo.png">
+    <link rel="apple-touch-icon" href="resources/f90-logo.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'studio-black': '#0a0a0a',
+                        'studio-gray': '#1a1a1a',
+                        'studio-gold': '#d4af37',
+                        'studio-silver': '#8a8a8a',
+                        'studio-bronze': '#8b6914',
+                        'studio-warm-gray': '#2a2a2a'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Tajawal', 'Inter', sans-serif;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+        
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 26, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .content-section {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(10px);
+        }
+        
+        .mini-player {
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #d4af37 0%, #f4d03f 100%);
+        }
+    </style>
+</head>
+<body class="bg-studio-black text-white">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full top-0 z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="resources/f90-logo.png" alt="F90 Studio" class="w-10 h-10">
+                <span class="text-xl font-bold font-playfair text-studio-gold">F90 Studio</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-white hover:text-studio-gold transition-colors">الرئيسية</a>
+                <a href="music.html" class="text-white hover:text-studio-gold transition-colors">الموسيقى</a>
+                <a href="playlists.html" class="text-white hover:text-studio-gold transition-colors">قوائم التشغيل</a>
+                <a href="studio.html" class="text-white hover:text-studio-gold transition-colors">الاستوديو</a>
+                <a href="requests.html" class="text-white hover:text-studio-gold transition-colors">الطلبات</a>
+                <a href="about.html" class="text-white hover:text-studio-gold transition-colors">من نحن</a>
+                <a href="contact.html" class="text-white hover:text-studio-gold transition-colors">اتصل بنا</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="mobileMenu" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenuContent" class="hidden md:hidden mt-4 pb-4 border-t border-studio-warm-gray">
+            <div class="flex flex-col space-y-3 pt-4">
+                <a href="index.html" class="text-white hover:text-studio-gold transition-colors">الرئيسية</a>
+                <a href="music.html" class="text-white hover:text-studio-gold transition-colors">الموسيقى</a>
+                <a href="playlists.html" class="text-white hover:text-studio-gold transition-colors">قوائم التشغيل</a>
+                <a href="studio.html" class="text-white hover:text-studio-gold transition-colors">الاستوديو</a>
+                <a href="requests.html" class="text-white hover:text-studio-gold transition-colors">الطلبات</a>
+                <a href="about.html" class="text-white hover:text-studio-gold transition-colors">من نحن</a>
+                <a href="contact.html" class="text-white hover:text-studio-gold transition-colors">اتصل بنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-32 pb-16 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-playfair text-studio-gold mb-6">سياسة الخصوصية</h1>
+            <p class="text-xl text-studio-silver mb-12">آخر تحديث: 25 ديسمبر 2025</p>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Content -->
+    <section class="pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="content-section rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">مقدمة</h2>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    في F90 Music Studio، نحترم خصوصية مستخدمينا ونلتزم بحماية معلوماتهم الشخصية. هذه السياسة توضح كيفية جمعنا واستخدامنا وحمايتنا لمعلوماتك عند استخدامك لموقعنا الإلكتروني وتطبيقاتنا.
+                </p>
+            </div>
+
+            <div class="content-section rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">المعلومات التي نجمعها</h2>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    <strong>لا نقوم بجمع معلومات شخصية حساسة:</strong> موقع F90 Music Studio لا يطلب أو يجمع أي معلومات شخصية حساسة مثل الأسماء، عناوين البريد الإلكتروني، أو أرقام الهواتف.
+                </p>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    <strong>التخزين المحلي فقط:</strong> نحن نستخدم LocalStorage في متصفحك لتخزين تفضيلاتك المحلية فقط، مثل:
+                </p>
+                <ul class="list-disc mr-8 text-studio-silver space-y-2">
+                    <li>تقييمات الأغاني (نجوم 1-5)</li>
+                    <li>الأغاني المفضلة</li>
+                    <li>التعليقات على الأغاني</li>
+                    <li>تفضيلات اللغة</li>
+                </ul>
+            </div>
+
+            <div class="content-section rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">كيف نستخدم المعلومات</h2>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    المعلومات المخزنة محلياً تُستخدم فقط لتحسين تجربة المستخدم داخل الموقع:
+                </p>
+                <ul class="list-disc mr-8 text-studio-silver space-y-2">
+                    <li>عرض تقييماتك الشخصية للأغاني</li>
+                    <li>حفظ قائمة أغانيك المفضلة</li>
+                    <li>عرض تعليقاتك وغيرها من التعليقات</li>
+                    <li>تذكر تفضيلات اللغة المختارة</li>
+                </ul>
+            </div>
+
+            <div class="content-section rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">مشاركة المعلومات</h2>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    <strong>لا نشارك أي معلومات:</strong> جميع البيانات المخزنة محلياً تبقى على جهازك فقط ولا تُرسل إلى أي خوادم خارجية.
+                </p>
+                <p class="text-studio-silver leading-relaxed">
+                    <strong>محتوى YouTube:</strong> المحتوى المنشور من قنوات YouTube المرتبطة بالموقع يبقى ملكاً لأصحابه الأصليين ويخضع لشروط خدمة YouTube.
+                </p>
+            </div>
+
+            <div class="content-section rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">الأمان</h2>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    نحن نتخذ تدابير أمان مناسبة لحماية المعلومات المخزنة محلياً:
+                </p>
+                <ul class="list-disc mr-8 text-studio-silver space-y-2">
+                    <li>جميع البيانات محلية ولا تُرسل عبر الإنترنت</li>
+                    <li>لا نستخدم ملفات تعريف الارتباط (cookies) للتتبع</li>
+                    <li>لا نجمع بيانات التصفح أو المعلومات الشخصية</li>
+                </ul>
+            </div>
+
+            <div class="content-section rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">حقوقك</h2>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    بصفتك مستخدماً، لدك الحق في:
+                </p>
+                <ul class="list-disc mr-8 text-studio-silver space-y-2">
+                    <li>حذف جميع البيانات المحلية عن طريق مسح ذاكرة التخزين للموقع</li>
+                    <li>اختيار عدم استخدام الموقع إذا كنت غير راضٍ عن سياسة الخصوصية</li>
+                    <li>الوصول إلى جميع الميزارات دون إجبار على تقديم معلومات شخصية</li>
+                </ul>
+            </div>
+
+            <div class="content-section rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">التغييرات على هذه السياسة</h2>
+                <p class="text-studio-silver leading-relaxed">
+                    قد نقوم بتحديث هذه السياسة من وقت لآخر. سيتم نشر أي تغييرات على هذه الصفحة مع تحديث تاريخ "آخر تحديث". ننصح بمراجعة هذه الصفحة دورياً للبقاء على اطلاع بأي تغييرات.
+                </p>
+            </div>
+
+            <div class="content-section rounded-2xl p-8">
+                <h2 class="text-2xl font-bold text-studio-gold mb-4">الاتصال بنا</h2>
+                <p class="text-studio-silver leading-relaxed mb-4">
+                    إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يمكنك التواصل معنا عبر:
+                </p>
+                <ul class="list-disc mr-8 text-studio-silver space-y-2">
+                    <li>WhatsApp: +970 568 181 910</li>
+                    <li>البريد الإلكتروني: f90gimme@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-studio-gray py-12 px-6 border-t border-studio-warm-gray">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <img src="resources/f90-logo.png" alt="F90 Studio" class="w-8 h-8">
+                <span class="text-xl font-bold font-playfair text-studio-gold">F90 Music Studio</span>
+            </div>
+            <p class="text-studio-silver mb-4">© 2025 F90 Music Studio - جميع الحقوق محفوظة</p>
+            <div class="flex justify-center space-x-6 space-x-reverse text-sm">
+                <a href="privacy.html" class="text-studio-gold">سياسة الخصوصية</a>
+                <a href="terms.html" class="text-studio-silver hover:text-studio-gold">شروط الاستخدام</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mini Player -->
+    <div id="miniPlayer" class="mini-player fixed bottom-0 left-0 right-0 z-40 transform translate-y-full transition-transform duration-300">
+        <div class="px-6 py-4">
+            <div class="flex items-center space-x-4">
+                <img id="currentTrackArtwork" src="" alt="" class="w-12 h-12 rounded-lg">
+                <div class="flex-1 min-w-0">
+                    <h4 id="currentTrackTitle" class="font-medium text-white truncate"></h4>
+                    <p id="currentTrackArtist" class="text-sm text-studio-silver truncate"></p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button id="prevTrack" class="text-studio-gold hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                        </svg>
+                    </button>
+                    <button id="playPause" class="bg-studio-gold text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-90 transition-all">
+                        <svg id="playIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg id="pauseIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <button id="nextTrack" class="text-studio-gold hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="w-full bg-studio-warm-gray rounded-full h-1">
+                    <div id="progressBar" class="progress-bar h-1 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
